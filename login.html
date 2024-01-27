@@ -26,11 +26,9 @@
 
             // 发送登录请求
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'login.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.open('GET', 'login.php?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password), true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    console.log(xhr.status);
                     if (xhr.status === 200) {
                         alert('Login successful');
                     } else {
@@ -38,8 +36,7 @@
                     }
                 }
             };
-            xhr.send('username=' + username + '&password=' + password);
-            console.log('username=' + username + '&password=' + password)
+            xhr.send();
         }
     </script>
 </body>
