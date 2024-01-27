@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <form id="loginForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // 发送登录请求
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'login.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    console.log(xhr.status);
+                    if (xhr.status === 200) {
+                        alert('Login successful');
+                    } else {
+                        alert('Login failed');
+                    }
+                }
+            };
+            xhr.send('username=' + username + '&password=' + password);
+            console.log('username=' + username + '&password=' + password)
+        }
+    </script>
+</body>
+</html>
